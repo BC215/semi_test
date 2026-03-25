@@ -1,0 +1,89 @@
+/* 1. 전체 페이지 레이아웃 (약 7:3 분할로 조정) */
+.main_wrap {
+  display: flex;
+  /* 헤더 높이를 제외한 화면 전체 높이 고정 */
+  height: calc(100vh - var(--header-h));
+  padding: 20px;
+  gap: 20px;
+  box-sizing: border-box;
+  background-color: var(--bg-color);
+  overflow: hidden; /* 페이지 전체 스크롤 방지 */
+}
+
+/* 2. 좌측 영역: 큰 지도 (약 70%) */
+.map_container {
+  flex: 7; /* ⭐ 기존 1에서 7로 상향하여 지도를 대폭 확장 */
+  background-color: #e2e8f0;
+  border-radius: 30px; /* 가이드 이미지처럼 둥근 모서리 */
+  height: 100%;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map_placeholder {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 5px;
+}
+
+/* 3. 우측 영역: 게시판 박스 (약 30%) */
+.board_container {
+  flex: 3; /* ⭐ 기존 1에서 3으로 하향하여 게시판 길이를 슬림하게 변경 */
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  height: 100%;
+  overflow: hidden; /* 필터는 고정, 리스트만 스크롤되게 가둠 */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 4. 우측 상단 필터 영역 (고정) */
+.filter_area {
+  padding: 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0; /* 필터 높이 고정 */
+  background-color: var(--white);
+  z-index: 10;
+}
+
+/* 🚀 5. 핵심: 파란색 리스트 칸 (이 안에서만 게시물들이 움직임) */
+.list_area {
+  flex: 1;
+  overflow-y: auto; /* ⭐ 세로 스크롤 활성화 */
+  min-height: 0; /* ⭐ Flex 자식의 스크롤 버그 방지 */
+  background-color: #ebf4ff; /* 요청하신 파란색 배경 */
+  padding: 0;
+}
+
+/* 스크롤바 디자인 - 파란색 영역과 어울리는 슬림한 스타일 */
+.list_area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.list_area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.list_area::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
+
+.list_area::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* 6. 탄소 아끼기 테마 포인트 */
+.board_container::before {
+  content: "";
+  height: 4px;
+  background: linear-gradient(90deg, #2d6a4f, #52b788);
+  width: 100%;
+}

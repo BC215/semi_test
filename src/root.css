@@ -1,0 +1,17 @@
+/* root.css */
+:root {
+  --primary-color: #333333;
+  --bg-gray: #f8f9fa;
+  --border-color: #e9ecef;
+  --text-gray: #868e96;
+  --white: #ffffff;
+  --radius-main: 12px;
+  --spacing-m: 16px;
+}
+
+/* 전체 초기화 (선택사항) */
+body {
+  margin: 0;
+  background-color: var(--bg-gray);
+  font-family: "Pretendard", sans-serif;
+}
