@@ -1,11 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./PostList.module.css";
+import axios from "axios";
 import dummyData from "../mock/dummyData.jsx";
 import CommentSection from "./CommentSection";
 
 const PostList = () => {
+  // 서버에서 불러온 게시글 상태
+  const [posts, setPosts] = useState([]);
   // 현재 어떤 게시글이 펼쳐져 있는지 관리 (ID 저장)
   const [expandedId, setExpandedId] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get("/api/posts")
+      .then((res) => {
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setPosts(res.data);
+        } else {
+          // 백엔드가 없거나 빈 데이터일 때 기본 더미 사용
+          setPosts(dummyData);
+        }
+      })
+      .catch((err) => {
+        console.error("PostList fetch failed:", err);
+        setPosts(dummyData);
+      });
+  }, []);
 
   const handleToggle = (id) => {
     // 이미 열린 글을 누르면 닫고, 아니면 해당 ID의 글을 엽니다.
@@ -14,7 +34,7 @@ const PostList = () => {
 
   return (
     <div className={styles.list}>
-      {dummyData.map((post) => (
+      {(posts.length ? posts : dummyData).map((post) => (
         <div key={post.id} className={styles.item_group}>
           {/* --- 1. 요약 리스트 헤더 (항상 보임) --- */}
           <div
