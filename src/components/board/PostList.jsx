@@ -31,14 +31,19 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
       });
   }, [initialPosts]);
 
+  // 3) 게시글 열기/닫기 토글 함수
+  //    - 동일 게시글을 다시 클릭하면 닫힌다 (expandedId=null)
+  //    - 다른 게시글 클릭 시 해당 게시글을 expand 상태로 변경
   const handleToggle = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
 
+  // 4) 삭제 콜백: PostDetail -> 여기에서 호출되고 자신의 리스트에서 삭제
   const handleDelete = (id) => {
     setPosts((prev) => prev.filter((post) => post.id !== id));
   };
 
+  // 5) 수정 콜백: PostDetail -> 여기에서 호출되고 리스트 갱신
   const handleUpdate = (updatedPost) => {
     setPosts((prev) =>
       prev.map((post) => (post.id === updatedPost.id ? updatedPost : post)),
@@ -65,6 +70,14 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
 
           {expandedId === post.id && (
             <div className={styles.detail_area}>
+              {/*
+                6) PostDetail 렌더링 로직
+                   * expandedId와 현재 post.id 일치할 때만 렌더링
+                   * 여기서 PostDetail 컴포넌트에 전달하는 콜백:
+                     - onUpdate: 수정 완료 시 부모 리스트 갱신
+                     - onDelete: 삭제 완료 시 부모 리스트 갱신
+                   * commentEnabled: 마이페이지에서 false로 전달하면 댓글 섹션 숨김
+              */}
               <PostDetail
                 post={post}
                 onUpdate={handleUpdate}

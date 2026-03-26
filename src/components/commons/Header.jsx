@@ -27,6 +27,12 @@ const Header = () => {
       </Link>
       <nav>
         <Link
+          to="/mypage"
+          style={{ marginLeft: "20px", textDecoration: "none", color: "#666" }}
+        >
+          마이페이지
+        </Link>
+        <Link
           to="/login"
           style={{ marginLeft: "20px", textDecoration: "none", color: "#666" }}
         >

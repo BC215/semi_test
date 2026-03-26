@@ -5,6 +5,7 @@ import "./font.css";
 import Footer from "./components/commons/Footer";
 import Header from "./components/commons/Header";
 import Main from "./pages/Main";
+import MyPage from "./pages/member/MyPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <main className="main">
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </main>
       <Footer />
