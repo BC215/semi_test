@@ -25,6 +25,10 @@
   margin-bottom: 0;
 }
 
+.item_group.expanded .summary_stats {
+  display: none;
+}
+
 .item_summary {
   padding: 16px;
   cursor: pointer;
