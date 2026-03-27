@@ -53,7 +53,12 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
   return (
     <div className={styles.list}>
       {(posts.length ? posts : dummyData).map((post) => (
-        <div key={post.id} className={styles.item_group}>
+        <div
+          key={post.id}
+          className={`${styles.item_group} ${
+            expandedId === post.id ? styles.expanded : ""
+          }`}
+        >
           <div
             className={`${styles.item_summary} ${expandedId === post.id ? styles.active : ""}`}
             onClick={() => handleToggle(post.id)}

@@ -1,5 +1,7 @@
 .detail_container {
   padding: 10px;
+  border: none;
+  border-radius: 8px;
 }
 
 .header {
