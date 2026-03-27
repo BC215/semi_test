@@ -68,3 +68,16 @@
   font-size: 14px;
   color: var(--sub-text);
 }
+
+.comment_icon {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--sub-text);
+}
+
+.comment_icon .material-icons {
+  font-size: 18px;
+  vertical-align: middle;
+}

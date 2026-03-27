@@ -9,6 +9,8 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
   const [posts, setPosts] = useState(initialPosts || []);
   // 현재 어떤 게시글이 펼쳐져 있는지 관리 (ID 저장)
   const [expandedId, setExpandedId] = useState(null);
+  // 좋아요 토글 상태 (게시글별)
+  const [likeStates, setLikeStates] = useState({});
 
   useEffect(() => {
     if (initialPosts && initialPosts.length > 0) {
@@ -30,6 +32,28 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
         setPosts(dummyData);
       });
   }, [initialPosts]);
+
+  useEffect(() => {
+    if (!posts || posts.length === 0) return;
+
+    setLikeStates((prev) => {
+      const newStates = { ...prev };
+      posts.forEach((post) => {
+        if (!(post.id in newStates)) {
+          newStates[post.id] = false;
+        }
+      });
+
+      // 유효하지 않은 id 제거
+      Object.keys(newStates).forEach((id) => {
+        if (!posts.find((post) => String(post.id) === String(id))) {
+          delete newStates[id];
+        }
+      });
+
+      return newStates;
+    });
+  }, [posts]);
 
   // 3) 게시글 열기/닫기 토글 함수
   //    - 동일 게시글을 다시 클릭하면 닫힌다 (expandedId=null)
@@ -66,8 +90,33 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
             <div className={styles.summary_top}>
               <span className={styles.author}>● {post.author}</span>
               <div className={styles.summary_stats}>
-                <span>❤️ {post.likes}</span>
-                <span>💬 {post.comments ? post.comments.length : 0}</span>
+                <div className={styles.like_wrapper}>
+                  <button
+                    className={
+                      likeStates[post.id]
+                        ? `${styles.like_btn} ${styles.liked}`
+                        : styles.like_btn
+                    }
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLikeStates((prev) => ({
+                        ...prev,
+                        [post.id]: !prev[post.id],
+                      }));
+                    }}
+                  >
+                    <span className="material-icons">
+                      {likeStates[post.id] ? "favorite" : "favorite_border"}
+                    </span>
+                  </button>
+                  <span className={styles.like_count}>
+                    {(post.likes || 0) + (likeStates[post.id] ? 1 : 0)}
+                  </span>
+                </div>
+                <div className={styles.comment_icon}>
+                  <span className="material-icons">comment</span>
+                  <span>{post.comments ? post.comments.length : 0}</span>
+                </div>
               </div>
             </div>
             <h4 className={styles.post_title}>{post.title}</h4>
@@ -85,6 +134,13 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
               */}
               <PostDetail
                 post={post}
+                liked={!!likeStates[post.id]}
+                onLikeToggle={() =>
+                  setLikeStates((prev) => ({
+                    ...prev,
+                    [post.id]: !prev[post.id],
+                  }))
+                }
                 onUpdate={handleUpdate}
                 onDelete={handleDelete}
                 commentEnabled={commentEnabled}

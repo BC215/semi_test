@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./PostDetail.module.css";
 import CommentSection from "./CommentSection";
 
-const PostDetail = ({ post, onUpdate, onDelete, commentEnabled = true }) => {
+const PostDetail = ({ post, liked = false, onLikeToggle, onUpdate, onDelete, commentEnabled = true }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(post.title);
   const [editedContent, setEditedContent] = useState(post.content);
@@ -55,13 +55,27 @@ const PostDetail = ({ post, onUpdate, onDelete, commentEnabled = true }) => {
           </div>
 
           <div className={styles.stats}>
-            <span>❤️ {post.likes}</span>
-            <span>
-              💬{" "}
-              {Array.isArray(post.comments)
-                ? post.comments.length
-                : post.comments || 0}
-            </span>
+            <div className={styles.like_wrapper}>
+              <button
+                className={
+                  liked
+                    ? `${styles.like_btn} ${styles.liked}`
+                    : styles.like_btn
+                }
+                onClick={() => onLikeToggle?.()}
+              >
+                <span className="material-icons">
+                  {liked ? "favorite" : "favorite_border"}
+                </span>
+              </button>
+              <span className={styles.like_count}>
+                {(post.likes || 0) + (liked ? 1 : 0)}
+              </span>
+            </div>
+            <div className={styles.comment_icon}>
+              <span className="material-icons">comment</span>
+              <span>{Array.isArray(post.comments) ? post.comments.length : post.comments || 0}</span>
+            </div>
           </div>
 
           <div className={styles.action_btns}>

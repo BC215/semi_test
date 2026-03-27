@@ -5,6 +5,12 @@
 
 .item_group {
   border-bottom: 1px solid #eee;
+  background-color: #ffffff;
+  transition: background-color 0.2s;
+}
+
+.item_group:hover {
+  background-color: #f3fff0;
 }
 
 .item_group.expanded {
@@ -35,6 +41,19 @@
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.comment_icon {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--sub-text);
+}
+
+.comment_icon .material-icons {
+  font-size: 18px;
+  vertical-align: middle;
 }
 
 /* ===== 🔥 좋아요 동일 구조 ===== */
