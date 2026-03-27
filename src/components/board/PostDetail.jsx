@@ -79,10 +79,10 @@ const PostDetail = ({ post, liked = false, onLikeToggle, onUpdate, onDelete, com
           </div>
 
           <div className={styles.action_btns}>
-            <button type="button" onClick={() => setIsEditing(true)}>
+            <button type="button" className={styles.action_btn} onClick={() => setIsEditing(true)}>
               수정
             </button>
-            <button type="button" onClick={() => onDelete?.(post.id)}>
+            <button type="button" className={styles.action_btn} onClick={() => onDelete?.(post.id)}>
               삭제
             </button>
           </div>
