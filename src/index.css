@@ -6,7 +6,8 @@
   --text-sub: #868e96;
   --primary: #333;
   --radius: 12px;
-  --header-h: 60px;
+  --header-h: 100px;
+  --footer-h: 100px;
 }
 
 body {

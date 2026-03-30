@@ -1,21 +1,23 @@
-/* 1. 전체 페이지 레이아웃 (5:5 분할) */
+/* 1. 전체 페이지 레이아웃 (중앙 정렬, 고정 박스) */
 .main_wrap {
   display: flex;
-  /* 헤더 높이를 제외한 화면 전체 높이 고정 */
-  height: calc(100vh - var(--header-h));
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   padding: 20px;
   gap: 20px;
   box-sizing: border-box;
   background-color: var(--bg-color);
-  overflow: hidden; /* 페이지 전체 스크롤 방지 */
+  overflow: auto; /* 내용이 커질 경우 필요한 만큼 스크롤 */
 }
 
-/* 2. 좌측 영역: 큰 지도 (50%) */
+/* 2. 좌측 영역: 큰 지도 (크기 695x720 고정) */
 .map_container {
-  flex: 1; /* 5:5 비율을 위한 설정 */
+  width: 695px;
+  height: 720px;
+  margin-left: 50px; /* 요청: 맵 좌측 여백 */
   background-color: #e2e8f0;
   border-radius: 30px; /* 가이드 이미지처럼 둥근 모서리 */
-  height: 100%;
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
@@ -31,15 +33,16 @@
   letter-spacing: 5px;
 }
 
-/* 3. 우측 영역: 게시판 박스 (50%) */
+/* 3. 우측 영역: 게시판 박스 (크기 695x720 고정) */
 .board_container {
-  flex: 1; /* 5:5 비율을 위한 설정 */
+  width: 695px;
+  height: 720px;
+  margin-right: 50px; /* 요청: 게시글 우측 여백 */
   display: flex;
   flex-direction: column;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  height: 100%;
   overflow: hidden; /* 필터는 고정, 리스트만 스크롤되게 가둠 */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
@@ -80,10 +83,8 @@
   background: #a0aec0;
 }
 
-/* 6. 탄소 아끼기 테마 포인트 (선택 사항) */
-.board_container::before {
-  content: "";
-  height: 4px;
-  background: linear-gradient(90deg, #2d6a4f, #52b788);
-  width: 100%;
-}
+/*
+  .board_container::before
+  → 게시판(옵션+리스트) 상단에 초록~연두색 그라데이션 선을 생성하는 CSS (Main.jsx에서 적용)
+  현재는 주석 처리되어 비활성화 상태
+*/

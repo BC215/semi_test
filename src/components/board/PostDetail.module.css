@@ -89,3 +89,36 @@
   font-size: 18px;
   vertical-align: middle;
 }
+
+/* ...existing code... */
+.action_btn {
+  /* 댓글창 버튼 스타일을 여기에 복사 */
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background 0.2s;
+}
+.action_btn:last-child {
+  margin-right: 0;
+}
+.action_btn:hover {
+  background: #e0e0e0;
+}
+
+.like_btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #bdbdbd;
+  font-size: 22px;
+  padding: 4px;
+  transition: color 0.2s;
+}
+.liked {
+  color: #e74c3c;
+}

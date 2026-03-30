@@ -17,6 +17,7 @@ const Main = () => {
       </section>
 
       {/* 2. 우측 영역: 게시판 박스 (필터 고정 + 리스트 스크롤) */}
+      {/* 게시판(옵션+리스트) 상단 초록색 그라데이션 선은 Main.module.css의 .board_container::before에서 생성됨 */}
       <section className={styles.board_container}>
         {/* 상단 필터: 이 영역은 스크롤되지 않고 고정됩니다 */}
         <div className={styles.filter_area}>

@@ -1,3 +1,43 @@
+/* 공통 버튼/하트/카운트 스타일 */
+/* 좋아요 버튼/카운트 공통 스타일 개선 */
+/* 좋아요/댓글 스타일 - 사진1처럼 */
+/* 좋아요(하트)만 사진1처럼, 댓글은 원래대로 */
+.like_btn {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  transition: opacity 0.2s;
+}
+.like_btn .material-icons {
+  font-size: 32px;
+  vertical-align: middle;
+  color: #b0b8be !important;
+  transition: color 0.2s;
+}
+.like_btn.liked .material-icons {
+  color: #FF593C !important;
+}
+.like_btn:active {
+  opacity: 0.7;
+}
+.like_count {
+  margin-left: 8px;
+  font-weight: 600;
+  color: #26332e;
+  font-size: 2rem;
+  letter-spacing: -1px;
+}
+.comment_count {
+  margin-left: 12px;
+  color: #666;
+  font-size: 14px;
+}
 /* root.css */
 :root {
   --primary-color: #333333;
