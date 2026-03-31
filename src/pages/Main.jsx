@@ -37,18 +37,18 @@ const Main = () => {
         <aside className={styles.menu_panel}>
           <div className={styles.menu_title}>메뉴</div>
           <ul className={styles.menu_list}>
-            <li>맵 커뮤니티</li>
-            <li>챌린지 캠페인</li>
-            <li>중고거래</li>
-            <li>미션</li>
-            <li>나무 키우기</li>
-            <li>공지사항</li>
+            <li><a href="#">맵 커뮤니티</a></li>
+            <li><a href="#">챌린지 캠페인</a></li>
+            <li><a href="/store">중고거래</a></li>
+            <li><a href="#">미션</a></li>
+            <li><a href="#">나무 키우기</a></li>
+            <li><a href="#">공지사항</a></li>
           </ul>
           <div className={styles.customer_box}>
             <h3>고객센터</h3>
             <p>고객센터 운영시간</p>
             <p>10:00 ~ 18:00</p>
-            <button>문의하기 ▶</button>
+            <a href="#" className={styles.customer_link}>문의하기 ▶</a>
           </div>
         </aside>
         <section className={styles.map_container}>
