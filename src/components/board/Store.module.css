@@ -28,8 +28,26 @@
   border-radius: 18px;
   box-sizing: border-box;
   border: 1px solid #d9e2ec;
-  padding: 0;
+  padding: 20px; /* 패딩을 추가하여 내부 여백 확보 */
 }
+
+.grid_box {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px; /* 카드 간격 키우기 */
+  margin-top: 16px; /* 위쪽 공간 확보 */
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px; /* 카드 내부 여백 증가 */
+  box-sizing: border-box;
+  min-height: 240px;
+  transition: transform 0.2s ease;
+}
+
 
 .store_wrap h1 {
   margin: 0;
