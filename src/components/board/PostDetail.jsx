@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import styles from "./PostDetail.module.css";
 import CommentSection from "./CommentSection";
 
@@ -57,7 +58,17 @@ const PostDetail = ({ post, liked = false, onLikeToggle, onUpdate, onDelete, com
                 type="button"
                 className={`${styles.icon_btn} ${isScrapped ? styles.activeIcon : ""}`}
                 title="스크랩"
-                onClick={() => setIsScrapped((prev) => !prev)}
+                onClick={() => {
+                  setIsScrapped((prev) => {
+                    const next = !prev;
+                    if (next) {
+                      alert("스크랩 되었습니다");
+                    } else {
+                      alert("스크랩이 취소되었습니다");
+                    }
+                    return next;
+                  });
+                }}
               >
                 <span className="material-icons">bookmark_border</span>
               </button>
@@ -65,9 +76,26 @@ const PostDetail = ({ post, liked = false, onLikeToggle, onUpdate, onDelete, com
                 type="button"
                 className={`${styles.icon_btn} ${isReported ? styles.activeIcon : ""}`}
                 title="신고"
-                onClick={() => {
-                  setIsReported(true);
-                  alert("신고가 접수되었습니다");
+                onClick={async () => {
+                  const result = await Swal.fire({
+                    title: "신고하시겠습니까?",
+                    text: "신고하시면 해당 게시물이 운영정책에 따라 검토됩니다.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "확인",
+                    cancelButtonText: "취소",
+                    reverseButtons: false,
+                  });
+
+                  if (result.isConfirmed) {
+                    setIsReported(true);
+                    await Swal.fire({
+                      icon: "success",
+                      title: "신고가 접수되었습니다.",
+                      showConfirmButton: true,
+                      confirmButtonText: "확인",
+                    });
+                  }
                 }}
               >
                 <span className="material-icons">report</span>
