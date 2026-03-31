@@ -10,14 +10,14 @@ import { storeDummyData } from "../components/mock/dummyData";
 
 const Main = () => {
   // useState:
-  // - selectedPopularId: 인기게시글 클릭 시 확장/상세보기용
-  // - slideIndex: 많이 본 상품 슬라이드 현재 위치
+  // - selectedPopularId: 인기게시글 리스트에서 항목 클릭 시 확장해서 상세보기함
+  // - slideIndex: 많이 본 상품 슬라이드의 현재 위치(왼쪽/오른쪽 이동 제어용)
   const [selectedPopularId, setSelectedPopularId] = useState(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
   // useMemo:
-  // - storeDummyData 로부터 조회순 정렬 후 상위 15개를 가져옵니다.
-  // - useMemo는 의존변수가 바뀔 때만 재계산되는 캐싱 역할을 함
+  // - storeDummyData에서 조회순으로 정렬한 후 상위 15개 데이터를 준비
+  // - 컴포넌트가 재렌더링될 때 goods를 재계산하지 않도록 성능 최적화
   const goods = useMemo(() => {
     const sortedByViews = [...storeDummyData].sort((a, b) => (b.viewCount || 0) - (a.viewCount || 0));
     return sortedByViews.slice(0, 15);
@@ -25,7 +25,7 @@ const Main = () => {
 
 
   // 슬라이드 관련 변수
-  const slideWindow = 7; // 한 번에 보여줄 카드 개수
+  const slideWindow = 8; // 한 번에 보여줄 카드 개수
   const maxIndex = Math.max(0, goods.length - slideWindow); // 슬라이드 최대 인덱스
 
   const onPrev = () => setSlideIndex((prev) => Math.max(0, prev - 1));
@@ -34,6 +34,7 @@ const Main = () => {
   return (
     <div className={styles.main_wrap}>
       <div className={styles.top_row}>
+        {/* 좌측: 메뉴 + 고객센터 */}
         <aside className={styles.menu_panel}>
           <div className={styles.menu_title}>메뉴</div>
           <ul className={styles.menu_list}>
@@ -51,7 +52,9 @@ const Main = () => {
             <a href="#" className={styles.customer_link}>문의하기 ▶</a>
           </div>
         </aside>
+        {/* 중앙: 지도 영역 */}
         <section className={styles.map_container}>
+          {/* 지도를 포함하는 헤더(검색바 + 제목) */}
           <div className={styles.map_header}>
           <div className={styles.location_search_box}>
             <input type="text" placeholder="위치를 검색하세요" />
@@ -66,6 +69,7 @@ const Main = () => {
         </div>
       </section>
 
+      {/* 오른쪽 상단: 인기 게시글 리스트 */}
       <section className={styles.popular_container}>
         <div className={styles.popular_header}>
           <h2>인기게시글</h2>
@@ -79,6 +83,7 @@ const Main = () => {
         </div>
       </section>
 
+      {/* 오른쪽 하단: 추가 정보(챌린지, 실시간 댓글, 랭킹) */}
       <section className={styles.side_container}>
         <div className={styles.challenge_box}>
           <h3>챌린지 홍보존</h3>
@@ -104,6 +109,7 @@ const Main = () => {
       </section>
       </div>
 
+      {/* 하단: 많이 본 상품 슬라이드 섹션 */}
       <section className={styles.used_goods_section}>
         <h2>많이 본 상품</h2>
         <div className={styles.goods_controls}>

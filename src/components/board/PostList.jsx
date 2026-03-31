@@ -70,6 +70,7 @@ const PostList = ({
   // 3) 게시글 열기/닫기 토글 함수
   //    - 동일 게시글을 다시 클릭하면 닫힌다 (expandedId=null)
   //    - 다른 게시글 클릭 시 해당 게시글을 expand 상태로 변경
+  //    - expand된 상태이면 PostDetail 영역이 보여진다
   const handleToggle = (id) => {
     const newExpandedId = expandedId === id ? null : id;
     setExpandedId(newExpandedId);
@@ -102,6 +103,9 @@ const PostList = ({
 
   return (
     <div className={styles.list}>
+      {/* 게시글 리스트 반복 렌더링
+          - visiblePosts: limit에 따라 표시 개수 제한
+          - API 미응답 시 dummyData 대체 렌더링 */}
       {(visiblePosts.length ? visiblePosts : dummyData.slice(0, limit || dummyData.length)).map((post) => (
         <div
           id={`post-item-${post.id}`}

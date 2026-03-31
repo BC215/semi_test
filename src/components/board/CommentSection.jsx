@@ -7,6 +7,7 @@ const CommentSection = ({ initialComments = [] }) => {
   const [newComment, setNewComment] = useState("");
 
   // 게시글이 바뀔 때마다 해당 게시글의 댓글로 상태를 업데이트
+  // - 댓글은 부모(PostDetail)에서 initialComments로 전달
   useEffect(() => {
     setComments(initialComments);
   }, [initialComments]);
@@ -25,6 +26,7 @@ const CommentSection = ({ initialComments = [] }) => {
 
   return (
     <div className={styles.comment_wrap}>
+      {/* 댓글 헤더: 현재 댓글 개수 표시 */}
       <h5 className={styles.comment_count}>
         댓글 {comments ? comments.length : 0}
       </h5>

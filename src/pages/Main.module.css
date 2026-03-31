@@ -3,6 +3,7 @@
    - 초보자가 추가/수정하기 편하도록 설명을 붙였습니다. */
 
 /* 1. 전체 페이지 레이아웃 (중앙 정렬, 고정 박스) */
+/* - main_wrap: 페이지 전체 구조를 세로형 플렉스로 배치합니다. */
 .main_wrap {
   display: flex;
   flex-direction: column;
@@ -25,6 +26,8 @@
 }
 
 .menu_panel {
+  /* 2. 좌측 사이드바 메뉴 패널
+     - 고정 지정된 높이 (map과 동일), 제목, 리스트, 고객센터 포함 */
   width: 220px;
   height: 720px;
   background: #ffffff;
@@ -347,7 +350,7 @@
 }
 
 .used_goods_section {
-  width: min(1340px, 100%);
+  width: min(1580px, 100%);
   margin: 20px auto 0;
   background: #f8fafc;
   border-radius: 20px;
@@ -395,8 +398,8 @@
 }
 
 .goods_slider .goods_card {
-  min-width: calc((100% - 84px) / 7);
-  max-width: calc((100% - 84px) / 7);
+  min-width: calc((100% - 100px) / 8);
+  max-width: calc((100% - 100px) / 8);
 }
 .goods_card {
   width: 100%;

@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+// 헤더 컴포넌트
+// - 상단 고정 도메인 로고와 네비게이션 링크 제공
 const Header = () => {
   return (
     <header

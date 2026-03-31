@@ -3,6 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
 import axios from "axios";
 
+// 로그인 페이지 컴포넌트
+// - 이메일/비밀번호 입력 후 인증 API 호출
+// - 성공 시 /mypage로 이동
+// - error 상태를 이용해 사용자 메시지 출력
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -37,7 +41,9 @@ const Login = () => {
 
   return (
     <div className={styles.auth_page}>
+      {/* 로그인 화면 중앙 정렬 바깥 컨테이너 */}
       <div className={styles.auth_card}>
+        {/* 로그인 카드 박스: 제목 + 입력폼 */}
         <h2 className={styles.auth_title}>로그인</h2>
         <form onSubmit={handleSubmit} className={styles.auth_form}>
           <label className={styles.auth_label}>
@@ -69,12 +75,13 @@ const Login = () => {
           </button>
         </form>
 
-      <p className={styles.auth_footer}>
-        아직 회원이 아니신가요?
-        <Link to="/join">회원가입</Link>
-      </p>
+        {/* 하단 안내: 회원가입 링크 */}
+        <p className={styles.auth_footer}>
+          아직 회원이 아니신가요?
+          <Link to="/join">회원가입</Link>
+        </p>
+      </div>
     </div>
-  </div>
   );
 
 };

@@ -1,4 +1,8 @@
 import React from "react";
+
+// 맵 뷰 컴포넌트
+// - mode가 'all'인 경우 전체 지도를, 그렇지 않으면 상세 위치 지도를 표시
+// - 현재는 플레이스홀더 텍스트를 렌더링함
 const MapView = ({ mode }) => (
   <div
     style={{

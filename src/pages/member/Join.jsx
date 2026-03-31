@@ -3,6 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
 import axios from "axios";
 
+// 회원가입 페이지 컴포넌트
+// - 이름/이메일/비밀번호 입력 후 가입 요청
+// - 비밀번호 확인 검증 후 API 호출
+// - 성공 시 /login으로 이동
 const Join = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -37,11 +41,13 @@ const Join = () => {
 
   return (
     <div className={styles.auth_page}>
+      {/* 회원가입 페이지 배경 컨테이너 */}
       <div className={styles.auth_card}>
+        {/* 회원가입 카드 컴포넌트 */}
         <h2 className={styles.auth_title}>회원가입</h2>
 
         <form onSubmit={handleSubmit} className={styles.auth_form}>
-          <label className={styles.auth_label}>
+          {/* 입력 폼 섹션: 이름, 이메일, 비밀번호, 비밀번호 확인 */}          <label className={styles.auth_label}>
             이름
             <input
               className={styles.auth_input}
@@ -92,6 +98,7 @@ const Join = () => {
           </button>
         </form>
 
+        {/* 하단 안내: 로그인 페이지 이동 링크 */}
         <p className={styles.auth_footer}>
           이미 계정이 있으신가요?
           <Link to="/login">로그인</Link>

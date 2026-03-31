@@ -1,3 +1,5 @@
+// 푸터 컴포넌트
+// - 페이지 맨 아래 고정, 저작권/회사 정보 표시
 const Footer = () => {
   return (
     <footer

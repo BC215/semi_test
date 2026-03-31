@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./PostDetail.module.css";
 import CommentSection from "./CommentSection";
 
+// 게시글 상세보기 컴포넌트
+// - 제목, 작성자, 날짜, 내용, 스크랩/신고, 좋아요, 댓글, 수정/삭제 버튼 처리
+// - isEditing 모드에서 타이틀/컨텐츠 편집 표시
+// - commentEnabled false로 설정하면 댓글 섹션을 감춤
 const PostDetail = ({ post, liked = false, onLikeToggle, onUpdate, onDelete, commentEnabled = true }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(post.title);
