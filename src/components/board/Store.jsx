@@ -2,6 +2,7 @@
 // - 중고장터 화면 컴포넌트입니다.
 // - storeDummyData로부터 75개 상품을 가져와 페이징 처리를 합니다.
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Store.module.css";
 import { storeDummyData } from "../mock/dummyData";
 
@@ -99,12 +100,15 @@ const Store = () => {
 
       <div className={styles.grid_box}>
         {visibleGoods.map((item) => (
-          <article key={item.id} className={styles.card}>
-            <div className={styles.image}>이미지</div>
-            <h3>{item.title}</h3>
-            <p className={styles.price}>{item.price}</p>
-            <p className={styles.meta}>{item.author} · {item.date} · 댓글 {item.comments}</p>
-          </article>
+          <Link key={item.id} to={`/store/${item.id}`} className={styles.cardLink}>
+            <article className={styles.card}>
+              <div className={styles.image}>이미지</div>
+              <h3>{item.title}</h3>
+              <p className={styles.price}>{item.price}</p>
+              <p className={styles.meta}>{item.author} · {item.date} · 댓글 {item.comments}</p>
+              <p className={styles.viewCount}>👀 조회수 {item.viewCount}</p>
+            </article>
+          </Link>
         ))}
       </div>
 

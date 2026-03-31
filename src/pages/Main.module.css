@@ -266,7 +266,7 @@
   border: none;
   border-radius: 7px;
   padding: 6px 12px;
-  background-color: #22c55e;
+  background-color: #2C3A36;
   color: white;
   cursor: pointer;
 }
@@ -299,7 +299,7 @@
 .location_search_box button {
   min-width: 70px;
   border: none;
-  background-color: #22c55e;
+  background-color: #2C3A36;
   color: white;
   border-radius: 8px;
   cursor: pointer;

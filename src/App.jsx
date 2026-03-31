@@ -9,6 +9,7 @@ import Store from "./components/board/Store";
 import MyPage from "./pages/member/MyPage";
 import Login from "./pages/member/Login";
 import Join from "./pages/member/Join";
+import StoreDetail from "./components/board/StoreDetail";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/store/:id" element={<StoreDetail />} />
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
           <Route path="/mypage" element={<MyPage />} />
