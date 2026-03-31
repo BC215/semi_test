@@ -5,7 +5,7 @@ const Footer = () => {
     <footer
       style={{
         height: "var(--footer-h)",
-        background: "#f8f9fa",
+        background: "var(--bg-color)",
         borderTop: "1px solid var(--border)",
         display: "flex",
         alignItems: "center",

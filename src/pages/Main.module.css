@@ -9,10 +9,16 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  padding: 20px;
-  gap: 20px;
+  width: 1440px;
+  height: 1024px;
+  min-width: 1440px;
+  min-height: 1024px;
+  max-width: 1440px;
+  max-height: 1024px;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 12px;
+  gap: 12px;
   box-sizing: border-box;
   background-color: var(--bg-color);
 }
@@ -22,14 +28,14 @@
   width: 100%;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
+  gap: 14px;
 }
 
 .menu_panel {
   /* 2. 좌측 사이드바 메뉴 패널
      - 고정 지정된 높이 (map과 동일), 제목, 리스트, 고객센터 포함 */
   width: 220px;
-  height: 720px;
+  height: 588px; /* 수정: aside(메뉴 패널)도 지도/인기/사이드와 동일 높이 */
   background: #ffffff;
   border: 1px solid #dbe4ef;
   border-radius: 16px;
@@ -126,7 +132,7 @@
 /* 2. 좌측 영역: 큰 지도 (고정) */
 .map_container {
   width: 600px;
-  height: 720px;
+  height: 588px; /* 수정: 지도 고정 높이 */
   background-color: #e2e8f0;
   border-radius: 30px;
   border: 1px solid var(--border);
@@ -138,18 +144,49 @@
 
 .popular_container {
   width: 420px;
-  height: 720px;
+  height: 588px; /* 조화: 인기 게시글 고정 높이 맞춤 */
   background-color: #ffffff;
   border: 1px solid var(--border);
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 6px 0;
+  gap: 8px;
 }
 
 .popular_header {
   border-bottom: 1px solid #e2e8f0;
-  padding: 14px;
+  padding: 10px 14px;
+  flex: 0 0 auto;
+}
+
+.popular_box {
+  height: 482px; /* 명시: 인기게시물 리스트 높이 */
+  overflow-y: auto;
+}
+
+.popular_tip_box {
+  height: 92px;
+  background-color: #f1f5f9;
+  border-top: 1px solid #dbe4ef;
+  padding: 10px 14px;
+  box-sizing: border-box;
+  margin-top: 4px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+
+.popular_tip_box p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #1e293b;
+  line-height: 1.2;
 }
 
 .popular_header h2 {
@@ -208,7 +245,7 @@
 
 .side_container {
   width: 320px;
-  height: 720px;
+  height: 588px; /* 조화: 사이드 박스 높이도 지도와 일치 */
   background-color: #ffffff;
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -351,25 +388,41 @@
 
 .used_goods_section {
   width: min(1580px, 100%);
-  margin: 20px auto 0;
+  margin: 8px auto 0;
   background: #f8fafc;
   border-radius: 20px;
-  padding: 20px;
+  padding: 14px;
   box-sizing: border-box;
+  height: 330px; /* 상품 내용이 더 잘 보이도록 약간 높임 */
+  overflow: hidden;
 }
 
-.used_goods_section h2 {
-  margin: 0 0 16px;
-  font-size: 1.6rem;
-  color: #0f172a;
+.goods_slider {
+  align-items: flex-start; /* 카드 내용이 위쪽에 고정되어 잘려보이지 않게 */
+  padding-top: 8px;
 }
 
 .goods_controls {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.goods_slider {
+  display: flex;
+  flex-wrap: nowrap;
   gap: 12px;
   width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
 }
 
 .slide_button {
@@ -391,11 +444,14 @@
 .goods_slider {
   display: flex;
   flex-wrap: nowrap;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
+  height: 100%;
   overflow-x: auto;
-  padding-bottom: 8px;
-  scroll-snap-type: x mandatory;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 4px;
 }
 
 .goods_card_link {
@@ -405,8 +461,10 @@
 }
 
 .goods_slider .goods_card {
-  min-width: 220px;
+  flex: 0 0 calc((100% - 60px) / 6);
+  min-width: 210px;
   max-width: 240px;
+  scroll-snap-align: start;
 }
 .goods_card {
   width: 100%;
@@ -421,6 +479,7 @@
   align-items: flex-start;
   white-space: normal;
   transform: none;
+  min-height: 220px; /* 상품 제목/가격/메타가 충분히 보이도록 고정 */
 }
 
 .goods_card h3,

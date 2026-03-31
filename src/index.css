@@ -1,14 +1,14 @@
 /* 설명: src/index.css 스타일파일입니다. 필요한 스타일 주석을 추가하세요. */
 :root {
-  --bg-color: #f8f9fa;
+  --bg-color: #FBFFF5;
   --white: #ffffff;
   --border: #e9ecef;
   --text-main: #212529;
   --text-sub: #868e96;
   --primary: #333;
   --radius: 12px;
-  --header-h: 100px;
-  --footer-h: 100px;
+  --header-h: 150px;
+  --footer-h: 150px;
 }
 
 body {

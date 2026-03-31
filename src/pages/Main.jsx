@@ -2,7 +2,7 @@
 // - 메인 페이지 컴포넌트입니다.
 // - 지도, 인기 게시글, 측면 랭킹과 함께 많이 본 상품 슬라이드가 포함되어 있습니다.
 // - 초보 개발자를 위해 각 섹션에 설명을 추가했습니다.
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 import MapView from "../components/map/MapView";
@@ -14,7 +14,6 @@ const Main = () => {
   // - selectedPopularId: 인기게시글 리스트에서 항목 클릭 시 확장해서 상세보기함
   // - slideIndex: 많이 본 상품 슬라이드의 현재 위치(왼쪽/오른쪽 이동 제어용)
   const [selectedPopularId, setSelectedPopularId] = useState(null);
-  const [slideIndex, setSlideIndex] = useState(0);
 
   // useMemo:
   // - storeDummyData에서 조회순으로 정렬한 후 상위 15개 데이터를 준비
@@ -26,11 +25,24 @@ const Main = () => {
 
 
   // 슬라이드 관련 변수
-  const slideWindow = 8; // 한 번에 보여줄 카드 개수
-  const maxIndex = Math.max(0, goods.length - slideWindow); // 슬라이드 최대 인덱스
+  // 한 번에 화면에 6개가 보이도록 카드 넓이 고정 및 가로 스크롤로 이동
+  const visibleCards = 6;
+  const totalCards = goods.length;
 
-  const onPrev = () => setSlideIndex((prev) => Math.max(0, prev - 1));
-  const onNext = () => setSlideIndex((prev) => Math.min(maxIndex, prev + 1));
+  const tipMessages = [
+    "#탄소절감을 위한 대 꿀팁 공유 3초마다 바뀜 - 1",
+    "#탄소절감을 위한 대 꿀팁 공유 3초마다 바뀜 - 2",
+    "#탄소절감을 위한 대 꿀팁 공유 3초마다 바뀜 - 3",
+  ];
+
+  const [tipIndex, setTipIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTipIndex((prev) => (prev + 1) % tipMessages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className={`${styles.main_wrap} common_wrap`}>
@@ -75,12 +87,21 @@ const Main = () => {
         <div className={styles.popular_header}>
           <h2>인기게시글</h2>
         </div>
+
+        {/* 인기게시글 전체 박스: 내부만 스크롤 가능하게 구성 */}
         <div className={styles.popular_box}>
           <PostList
             limit={7}
             expandedPostId={selectedPopularId}
             onExpandedIdChange={setSelectedPopularId}
           />
+        </div>
+
+        {/* 아래 팁박스: 3초마다 메시지 교체 */}
+        <div className={styles.popular_tip_box}>
+          <p>{tipMessages[tipIndex]}</p>
+          <p>{tipMessages[(tipIndex + 1) % tipMessages.length]}</p>
+          <p>{tipMessages[(tipIndex + 2) % tipMessages.length]}</p>
         </div>
       </section>
 
@@ -112,25 +133,26 @@ const Main = () => {
 
       {/* 하단: 많이 본 상품 슬라이드 섹션 */}
       <section className={styles.used_goods_section}>
-        <h2>많이 본 상품</h2>
+        {/* 컨트롤 영역: 추후 좌우 버튼 추가 가능 */}
         <div className={styles.goods_controls}>
 
+          {/* 상품 슬라이더 (가로 스크롤) */}
           <div className={styles.goods_slider}>
-            {goods
-              .slice(slideIndex, slideIndex + slideWindow)
-              .map((item) => (
-                <Link key={item.id} to={`/store/${item.id}`} className={styles.goods_card_link}>
-                  <article className={styles.goods_card}>
-                    <div className={styles.goods_image}>이미지</div>
-                    <h3>{item.title}</h3>
-                    <p className={styles.goods_price}>{item.price}</p>
-                    <div className={styles.goods_meta}>
-                      <span>👀 {item.viewCount || 0}</span>
-                      <span>💬 {item.comments || 0}</span>
-                    </div>
-                  </article>
-                </Link>
-              ))}
+            {goods.map((item) => (
+              <Link key={item.id} to={`/store/${item.id}`} className={styles.goods_card_link}>
+                <article className={styles.goods_card}>
+                  <div className={styles.goods_image}>이미지</div>
+                  <h3>{item.title}</h3>
+                  <p className={styles.goods_price}>{item.price}</p>
+
+                  {/* 조회수/댓글 수 메타 정보 */}
+                  <div className={styles.goods_meta}>
+                    <span>👀 {item.viewCount || 0}</span>
+                    <span>💬 {item.comments || 0}</span>
+                  </div>
+                </article>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

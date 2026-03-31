@@ -9,32 +9,45 @@ const Header = () => {
     <header
       style={{
         height: "var(--header-h)",
-        background: "white",
+        background: "var(--bg-color)",
         borderBottom: "1px solid var(--border)",
         display: "flex",
         alignItems: "center",
-        padding: "0 20px",
-        justifyContent: "space-between",
+        justifyContent: "center",
+        padding: "0",
       }}
     >
-      <Link
-        to="/"
+      {/* 헤더 내부 컨테이너를 메인 바디와 동일 폭으로 고정하여 정렬을 맞춤 */}
+      <div
         style={{
-          fontWeight: "bold",
-          fontSize: "20px",
-          textDecoration: "none",
-          color: "black",
+          width: "1440px",
+          maxWidth: "1440px",
+          minWidth: "1440px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 12px",
+          boxSizing: "border-box",
         }}
       >
-        탄소커넥트
-      </Link>
-      <nav>
         <Link
-          to="/mypage"
-          style={{ marginLeft: "20px", textDecoration: "none", color: "#666" }}
+          to="/"
+          style={{
+            fontWeight: "bold",
+            fontSize: "20px",
+            textDecoration: "none",
+            color: "black",
+          }}
         >
-          마이페이지
+          탄소커넥트
         </Link>
+        <nav>
+          <Link
+            to="/mypage"
+            style={{ marginLeft: "20px", textDecoration: "none", color: "#666" }}
+          >
+            마이페이지
+          </Link>
         <Link
           to="/login"
           style={{ marginLeft: "20px", textDecoration: "none", color: "#666" }}
@@ -48,6 +61,7 @@ const Header = () => {
           회원가입
         </Link>
       </nav>
+      </div>
     </header>
   );
 };
