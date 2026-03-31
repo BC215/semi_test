@@ -27,12 +27,6 @@ const Header = () => {
       </Link>
       <nav>
         <Link
-          to="/store"
-          style={{ marginLeft: "20px", textDecoration: "none", color: "#666" }}
-        >
-          중고장터
-        </Link>
-        <Link
           to="/mypage"
           style={{ marginLeft: "20px", textDecoration: "none", color: "#666" }}
         >

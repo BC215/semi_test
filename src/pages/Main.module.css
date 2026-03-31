@@ -64,6 +64,29 @@
   line-height: 1.4;
 }
 
+.menu_list a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  width: 100%;
+}
+
+.menu_list a:hover {
+  color: #2d4e34;
+  transform: translateX(2px);
+}
+
+.menu_list a:active,
+.menu_list a:focus {
+  color: #1f2a17;
+  outline: none;
+}
+
+.menu_list a:visited {
+  color: inherit;
+}
+
 .customer_box {
   margin-top: auto;
   padding: 12px;
