@@ -34,7 +34,24 @@ const Main = () => {
   return (
     <div className={styles.main_wrap}>
       <div className={styles.top_row}>
-          <section className={styles.map_container}>
+        <aside className={styles.menu_panel}>
+          <div className={styles.menu_title}>메뉴</div>
+          <ul className={styles.menu_list}>
+            <li>맵 커뮤니티</li>
+            <li>챌린지 캠페인</li>
+            <li>중고거래</li>
+            <li>미션</li>
+            <li>나무 키우기</li>
+            <li>공지사항</li>
+          </ul>
+          <div className={styles.customer_box}>
+            <h3>고객센터</h3>
+            <p>고객센터 운영시간</p>
+            <p>10:00 ~ 18:00</p>
+            <button>문의하기 ▶</button>
+          </div>
+        </aside>
+        <section className={styles.map_container}>
           <div className={styles.map_header}>
           <div className={styles.location_search_box}>
             <input type="text" placeholder="위치를 검색하세요" />
