@@ -5,6 +5,7 @@ import "./font.css";
 import Footer from "./components/commons/Footer";
 import Header from "./components/commons/Header";
 import Main from "./pages/Main";
+import Store from "./components/board/Store";
 import MyPage from "./pages/member/MyPage";
 import Login from "./pages/member/Login";
 import Join from "./pages/member/Join";
@@ -16,6 +17,7 @@ function App() {
       <main className="main">
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/store" element={<Store />} />
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
           <Route path="/mypage" element={<MyPage />} />

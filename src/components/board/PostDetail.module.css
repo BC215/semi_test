@@ -2,6 +2,22 @@
   padding: 10px;
   border: none;
   border-radius: 8px;
+  max-height: 520px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.detail_container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.detail_container::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
+
+.detail_container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 .header {
@@ -20,12 +36,54 @@
   font-size: 13px;
 }
 
+.title_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
 .title {
   font-size: 24px;
   font-weight: 800;
-  margin-bottom: 20px;
+  margin: 0;
   color: #1b4332;
   line-height: 1.4;
+}
+
+.action_icons {
+  display: flex;
+  gap: 8px;
+}
+
+.icon_btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+}
+
+.icon_btn:hover {
+  background: #f1f5f9;
+}
+
+.activeIcon,
+.report_btn.active {
+  background: #fff2f0;
+  border-color: #ff593c;
+  color: #ff593c;
+}
+
+.activeIcon .material-icons,
+.report_btn.active .material-icons {
+  color: #ff593c;
 }
 
 .image_placeholder {
@@ -77,6 +135,28 @@
   margin-top: 10px;
 }
 
+.action_btns_vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.sub_action_btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.action_btn, .report_btn {
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+.report_btn {
+  width: 100%;
+  text-align: center;
+}
 .comment_icon {
   display: flex;
   align-items: center;
@@ -108,6 +188,22 @@
 }
 .action_btn:hover {
   background: #e0e0e0;
+}
+
+.report_btn {
+  padding: 6px 16px;
+  border: 1px solid #ee5253;
+  border-radius: 4px;
+  background: #fff5f6;
+  color: #c0392b;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.report_btn:hover {
+  background: #ffecec;
+  color: #b83227;
 }
 
 .like_btn {

@@ -4,13 +4,25 @@ import axios from "axios";
 import dummyData from "../mock/dummyData.jsx";
 import PostDetail from "./PostDetail";
 
-const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
+const PostList = ({
+  posts: initialPosts = null,
+  commentEnabled = true,
+  expandedPostId = null,
+  onExpandedIdChange,
+  limit = null,
+}) => {
   // 서버에서 불러온 게시글 상태
   const [posts, setPosts] = useState(initialPosts || []);
   // 현재 어떤 게시글이 펼쳐져 있는지 관리 (ID 저장)
-  const [expandedId, setExpandedId] = useState(null);
+  const [expandedId, setExpandedId] = useState(expandedPostId || null);
   // 좋아요 토글 상태 (게시글별)
   const [likeStates, setLikeStates] = useState({});
+
+  useEffect(() => {
+    if (expandedPostId !== undefined && expandedPostId !== expandedId) {
+      setExpandedId(expandedPostId);
+    }
+  }, [expandedPostId]);
 
   useEffect(() => {
     if (initialPosts && initialPosts.length > 0) {
@@ -59,8 +71,20 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
   //    - 동일 게시글을 다시 클릭하면 닫힌다 (expandedId=null)
   //    - 다른 게시글 클릭 시 해당 게시글을 expand 상태로 변경
   const handleToggle = (id) => {
-    setExpandedId(expandedId === id ? null : id);
+    const newExpandedId = expandedId === id ? null : id;
+    setExpandedId(newExpandedId);
+    if (onExpandedIdChange) {
+      onExpandedIdChange(newExpandedId);
+    }
   };
+
+  useEffect(() => {
+    if (expandedId === null) return;
+    const target = document.getElementById(`post-item-${expandedId}`);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [expandedId]);
 
   // 4) 삭제 콜백: PostDetail -> 여기에서 호출되고 자신의 리스트에서 삭제
   const handleDelete = (id) => {
@@ -74,10 +98,13 @@ const PostList = ({ posts: initialPosts = null, commentEnabled = true }) => {
     );
   };
 
+  const visiblePosts = limit ? posts.slice(0, limit) : posts;
+
   return (
     <div className={styles.list}>
-      {(posts.length ? posts : dummyData).map((post) => (
+      {(visiblePosts.length ? visiblePosts : dummyData.slice(0, limit || dummyData.length)).map((post) => (
         <div
+          id={`post-item-${post.id}`}
           key={post.id}
           className={`${styles.item_group} ${
             expandedId === post.id ? styles.expanded : ""

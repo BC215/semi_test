@@ -66,4 +66,55 @@ const dummyData = Array.from({ length: 30 }, (_, i) => {
   };
 });
 
+const storeDummyData = (() => {
+  const productTemplate = [
+    "업사이클 청바지 재생 판매",
+    "중고 자전거 프레임 + 수리 키트",
+    "재활용 유리병 화분 5개 세트",
+    "친환경 우드 에코 테이블",
+    "재사용 캔들잔 (빈티지)",
+    "중고 컴퓨터 모니터 24인치",
+    "업사이클 데님 백팩",
+    "재활용 플라스틱 정리함",
+    "중고 리퍼폰 (배터리 90% 이상)",
+    "중고 태양광 후면 조명",
+    "빈티지 우드 의자(재활용)",
+    "리사이클 용기 키트 3종",
+    "중고 전기자전거 배터리",
+    "업사이클 티셔츠 6장 묶음",
+    "친환경 대나무 칫솔 세트",
+    "재사용 가능 텀블러 (중고)",
+    "플라스틱 재활용 키트",
+    "중고 캠핑 그릴 + 보관백",
+    "리사이클 타이어 재생용품",
+    "중고 노트북 (SSD 240GB)",
+    "재활용 패브릭 쿠션",
+    "중고 공기청정기",
+    "업사이클 나무 조명",
+    "중고 서랍장",
+    "재사용 유리컵 세트",
+  ];
+
+  return Array.from({ length: 75 }, (_, index) => {
+    const i = index;
+    const title = productTemplate[i % productTemplate.length];
+
+    const priceValue = Math.floor(Math.random() * 80 + 5) * 1000;
+    return {
+      id: 1001 + i,
+      title,
+      price: `${priceValue.toLocaleString()}원`, // 1000 단위 콤마 추가
+      author: `에코상인${(i % 30) + 1}`,
+      date: `2026.03.${String((i % 28) + 1).padStart(2, "0")}`,
+      comments: Math.floor(Math.random() * 12),
+      viewCount: Math.floor(Math.random() * 2000) + 100,
+    };
+  });
+})();
+
+// dummyData.jsx
+// - dummyData: 메인 게시판(활동로그)용
+// - storeDummyData: 중고장터 상품용
+// - viewCount는 인기순 정렬에 사용합니다
+export { dummyData, storeDummyData };
 export default dummyData;

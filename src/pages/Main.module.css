@@ -1,29 +1,236 @@
+/* Main.module.css
+   - Main.jsx의 레이아웃과 스타일을 정의합니다.
+   - 초보자가 추가/수정하기 편하도록 설명을 붙였습니다. */
+
 /* 1. 전체 페이지 레이아웃 (중앙 정렬, 고정 박스) */
 .main_wrap {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  height: 100%;
+  min-height: 100vh;
+  width: 100%;
   padding: 20px;
   gap: 20px;
   box-sizing: border-box;
   background-color: var(--bg-color);
-  overflow: auto; /* 내용이 커질 경우 필요한 만큼 스크롤 */
 }
 
-/* 2. 좌측 영역: 큰 지도 (크기 695x720 고정) */
+.top_row {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* 2. 좌측 영역: 큰 지도 (고정) */
 .map_container {
-  width: 695px;
+  width: 600px;
   height: 720px;
-  margin-left: 50px; /* 요청: 맵 좌측 여백 */
   background-color: #e2e8f0;
-  border-radius: 30px; /* 가이드 이미지처럼 둥근 모서리 */
+  border-radius: 30px;
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
+}
+
+.popular_container {
+  width: 420px;
+  height: 720px;
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.popular_header {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 14px;
+}
+
+.popular_header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+.popular_box {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.popular_box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popular_box::-webkit-scrollbar-track {
+  background: #f5f7fa;
+}
+
+.popular_box::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 999px;
+}
+
+.popular_box::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.popular_container .popular_box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.popular_container .popular_box::-webkit-scrollbar-track {
+  background: #f2f5f8;
+}
+
+.popular_container .popular_box::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
+
+.popular_container .popular_box::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.popular_container h2 {
+  margin: 0;
+  padding: 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.side_container {
+  width: 320px;
+  height: 720px;
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+}
+
+.challenge_box {
+  flex: 2;
+}
+
+.realtime_box {
+  flex: 1;
+}
+
+.rank_box {
+  flex: 3;
+}
+
+.side_container > div {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e0;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.side_container h3 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.side_container p {
+  margin: 0;
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+.side_container ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-height: 140px;
+}
+
+.side_container ul li {
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: #1e293b;
+}
+
+.side_container button {
+  border: none;
+  border-radius: 7px;
+  padding: 6px 12px;
+  background-color: #22c55e;
+  color: white;
+  cursor: pointer;
+}
+
+
+.map_header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  background-color: #f8fafc;
+}
+
+.location_search_box {
+  display: flex;
+  gap: 6px;
+  width: calc(100% - 140px);
+}
+
+.location_search_box input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+.location_search_box button {
+  min-width: 70px;
+  border: none;
+  background-color: #22c55e;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.map_title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.map_wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 60px);
+  display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.map_placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 14px;
+  padding: 12px 18px;
+  color: #475569;
+  font-weight: 700;
 }
 
 .map_placeholder {
@@ -33,19 +240,6 @@
   letter-spacing: 5px;
 }
 
-/* 3. 우측 영역: 게시판 박스 (크기 695x720 고정) */
-.board_container {
-  width: 695px;
-  height: 720px;
-  margin-right: 50px; /* 요청: 게시글 우측 여백 */
-  display: flex;
-  flex-direction: column;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden; /* 필터는 고정, 리스트만 스크롤되게 가둠 */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
 
 /* 4. 우측 상단 필터 영역 (고정) */
 .filter_area {
@@ -54,6 +248,93 @@
   flex-shrink: 0; /* 필터 높이 고정 */
   background-color: var(--white);
   z-index: 10;
+}
+
+.used_goods_section {
+  width: min(1340px, 100%);
+  margin: 20px auto 0;
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.used_goods_section h2 {
+  margin: 0 0 16px;
+  font-size: 1.6rem;
+  color: #0f172a;
+}
+
+.goods_controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.slide_button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1f2937;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.slide_button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.goods_slider {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 14px;
+  width: calc(100% - 100px); /* 버튼 제외 공간에 딱 맞춤 */
+  overflow: hidden;
+  padding-bottom: 8px;
+}
+
+.goods_slider .goods_card {
+  min-width: calc((100% - 84px) / 7);
+  max-width: calc((100% - 84px) / 7);
+}
+.goods_card {
+  width: 100%;
+  border: 1px solid #dbe4ef;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.goods_image {
+  width: 100%;
+  height: 135px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.goods_price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 4px 0 8px;
+}
+
+.goods_meta {
+  display: flex;
+  gap: 8px;
+  color: #475569;
+  font-size: 0.92rem;
 }
 
 /* 🚀 5. 핵심: 파란색 리스트 칸 (이 안에서만 게시물들이 움직임) */

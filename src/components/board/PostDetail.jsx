@@ -6,6 +6,8 @@ const PostDetail = ({ post, liked = false, onLikeToggle, onUpdate, onDelete, com
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(post.title);
   const [editedContent, setEditedContent] = useState(post.content);
+  const [isScrapped, setIsScrapped] = useState(false);
+  const [isReported, setIsReported] = useState(false);
 
   useEffect(() => {
     setEditedTitle(post.title);
@@ -44,7 +46,30 @@ const PostDetail = ({ post, liked = false, onLikeToggle, onUpdate, onDelete, com
         </div>
       ) : (
         <>
-          <h2 className={styles.title}>{post.title}</h2>
+          <div className={styles.title_top}>
+            <h2 className={styles.title}>{post.title}</h2>
+            <div className={styles.action_icons}>
+              <button
+                type="button"
+                className={`${styles.icon_btn} ${isScrapped ? styles.activeIcon : ""}`}
+                title="스크랩"
+                onClick={() => setIsScrapped((prev) => !prev)}
+              >
+                <span className="material-icons">bookmark_border</span>
+              </button>
+              <button
+                type="button"
+                className={`${styles.icon_btn} ${isReported ? styles.activeIcon : ""}`}
+                title="신고"
+                onClick={() => {
+                  setIsReported(true);
+                  alert("신고가 접수되었습니다");
+                }}
+              >
+                <span className="material-icons">report</span>
+              </button>
+            </div>
+          </div>
           <div className={styles.image_placeholder}>
             [ 탄소 저감 인증 사진 ]
           </div>
@@ -78,13 +103,15 @@ const PostDetail = ({ post, liked = false, onLikeToggle, onUpdate, onDelete, com
             </div>
           </div>
 
-          <div className={styles.action_btns}>
-            <button type="button" className={styles.action_btn} onClick={() => setIsEditing(true)}>
-              수정
-            </button>
-            <button type="button" className={styles.action_btn} onClick={() => onDelete?.(post.id)}>
-              삭제
-            </button>
+          <div className={styles.action_btns_vertical}>
+            <div className={styles.sub_action_btns}>
+              <button type="button" className={styles.action_btn} onClick={() => setIsEditing(true)}>
+                수정
+              </button>
+              <button type="button" className={styles.action_btn} onClick={() => onDelete?.(post.id)}>
+                삭제
+              </button>
+            </div>
           </div>
         </>
       )}
