@@ -54,7 +54,7 @@ const Store = () => {
   };
 
   return (
-    <div className={styles.store_layout}>
+    <div className={`${styles.store_layout} common_wrap`}>
       {/* 좌측 메뉴 + 고객센터 (Main 페이지와 동일 위치) */}
       <aside className={styles.menu_panel}>
         <div className={styles.menu_title}>메뉴</div>
@@ -94,7 +94,7 @@ const Store = () => {
           />
           <button onClick={updateSearch}>검색</button>
         </div>
-        <button className={styles.sell_button}>판매하기</button>
+        <button className={styles.sell_button}>판매글 등록</button>
       </div>
 
       <div className={styles.grid_box}>

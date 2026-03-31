@@ -21,4 +21,14 @@
 .main {
   flex: 1; /* 헤더/푸터 제외 남은 공간 다 차지 */
   overflow: auto; /* 페이지 전체 컨텐츠가 길어도 스크롤 허용 */
+  padding-top: calc(var(--header-h) / 2); /* 헤더 여백을 반으로 줄임 */
 }
+
+.common_wrap {
+  width: min(1580px, 100%);
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  padding-top: 0;
+}
+

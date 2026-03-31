@@ -6,19 +6,42 @@
 
 .store_layout {
   display: flex;
-  align-items: flex-start; /* 상단 맞춤: 메뉴와 스토어 헤더가 동일 높이에 시작 */
+  align-items: flex-start;
   gap: 20px;
   width: min(1580px, 100%);
-  margin: 28px auto 0;
+  margin: 0;
+  padding: 20px; /* 메인 페이지와 동일한 상단/좌측 여백 */
+  min-height: calc(100vh - var(--header-h));
+  box-sizing: border-box;
+}
+
+/* 메뉴판도 메인과 동일한 left margin */
+.menu_panel {
+  margin-left: 20px;
 }
 
 .store_wrap {
-  margin-top: 0; /* 왼쪽 메뉴 상단과 맞추기 */
+  margin: 0;
+  width: 100%;
+  min-height: 720px;
+  background: #f3f6fa;
+  border-radius: 18px;
+  box-sizing: border-box;
+  border: 1px solid #d9e2ec;
+  padding: 0;
+}
+
+.store_wrap h1 {
+  margin: 0;
+  padding: 20px 0 14px;
 }
 
 .menu_panel {
   width: 220px;
+  min-width: 220px;
+  max-width: 220px;
   height: 720px;
+  margin-left:62px; /* 메인과 동일한 왼쪽 여백 기준 */
   background: #ffffff;
   border: 1px solid #dbe4ef;
   border-radius: 16px;
@@ -27,6 +50,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  box-sizing: border-box;
 }
 
 .menu_title {
@@ -112,16 +136,6 @@
   text-decoration: none;
 }
 
-.store_wrap {
-  width: min(1340px, 100%);
-  margin: 28px auto 60px;
-  padding: 20px;
-  background: #f3f6fa;
-  border-radius: 18px;
-  box-sizing: border-box;
-  border: 1px solid #d9e2ec;
-}
-
 .header_box {
   display: flex;
   align-items: center;
@@ -151,30 +165,19 @@
 }
 
 .search_box input {
-  width: 300px; /* 넓게 */
+  width: 300px;
 }
 
 .search_box button {
   padding: 0 14px;
-  background: #22c55e; /* 판매하기 버튼과 동일 색  */
+  background: #22c55e;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 .search_box button:hover {
-  background: #16a34a;
-}
-
-.search_box button:hover {
   background: #2563eb;
-}
-
-.header_box h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 800;
-  color: #0f172a;
 }
 
 .sell_button {
@@ -212,7 +215,7 @@
   width: 100%;
   height: 120px;
   border-radius: 8px;
-  background: #d9e2ec;
+  background: #d9e8f0;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -32,7 +32,7 @@ const Main = () => {
   const onNext = () => setSlideIndex((prev) => Math.min(maxIndex, prev + 1));
 
   return (
-    <div className={styles.main_wrap}>
+    <div className={`${styles.main_wrap} common_wrap`}>
       <div className={styles.top_row}>
         {/* 좌측: 메뉴 + 고객센터 */}
         <aside className={styles.menu_panel}>

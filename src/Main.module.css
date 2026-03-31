@@ -87,3 +87,17 @@
   background: linear-gradient(90deg, #2d6a4f, #52b788);
   width: 100%;
 }
+
+/* 메뉴패널 공통 스타일 (Main/Store 동일) */
+.menu_panel {
+  width: 220px;
+  min-width: 220px;
+  max-width: 220px;
+  box-sizing: border-box;
+  margin-left: 20px;
+  padding: 16px;
+  background: #ffffff;
+  border: 1px solid #dbe4ef;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
