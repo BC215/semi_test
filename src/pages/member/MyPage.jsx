@@ -1,3 +1,4 @@
+// 설명: src/pages/member/MyPage.jsx 컴포넌트/모듈 파일입니다. 필요한 로직 주석을 추가하세요.
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../Main.module.css";

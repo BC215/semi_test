@@ -1,3 +1,4 @@
+/* 설명: src/components/page/DetailPage.module.css 스타일파일입니다. 필요한 스타일 주석을 추가하세요. */
 .detail_wrap {
   display: flex;
   height: calc(100vh - var(--header-height));

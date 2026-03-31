@@ -3,6 +3,7 @@
 // - 지도, 인기 게시글, 측면 랭킹과 함께 많이 본 상품 슬라이드가 포함되어 있습니다.
 // - 초보 개발자를 위해 각 섹션에 설명을 추가했습니다.
 import React, { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 import MapView from "../components/map/MapView";
 import PostList from "../components/board/PostList";
@@ -113,35 +114,24 @@ const Main = () => {
       <section className={styles.used_goods_section}>
         <h2>많이 본 상품</h2>
         <div className={styles.goods_controls}>
-          <button
-            className={styles.slide_button}
-            onClick={onPrev}
-            disabled={slideIndex === 0}
-          >
-            &lt;
-          </button>
+
           <div className={styles.goods_slider}>
             {goods
               .slice(slideIndex, slideIndex + slideWindow)
               .map((item) => (
-                <article key={item.id} className={styles.goods_card}>
-                  <div className={styles.goods_image}>이미지</div>
-                  <h3>{item.title}</h3>
-                  <p className={styles.goods_price}>{item.price}</p>
-                  <div className={styles.goods_meta}>
-                    <span>👀 {item.viewCount || 0}</span>
-                    <span>💬 {item.comments || 0}</span>
-                  </div>
-                </article>
+                <Link key={item.id} to={`/store/${item.id}`} className={styles.goods_card_link}>
+                  <article className={styles.goods_card}>
+                    <div className={styles.goods_image}>이미지</div>
+                    <h3>{item.title}</h3>
+                    <p className={styles.goods_price}>{item.price}</p>
+                    <div className={styles.goods_meta}>
+                      <span>👀 {item.viewCount || 0}</span>
+                      <span>💬 {item.comments || 0}</span>
+                    </div>
+                  </article>
+                </Link>
               ))}
           </div>
-          <button
-            className={styles.slide_button}
-            onClick={onNext}
-            disabled={slideIndex === maxIndex}
-          >
-            &gt;
-          </button>
         </div>
       </section>
     </div>

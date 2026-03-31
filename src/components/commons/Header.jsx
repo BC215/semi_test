@@ -1,3 +1,4 @@
+// 설명: src/components/commons/Header.jsx 컴포넌트/모듈 파일입니다. 필요한 로직 주석을 추가하세요.
 import React from "react";
 import { Link } from "react-router-dom";
 

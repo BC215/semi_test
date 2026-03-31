@@ -392,14 +392,21 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 14px;
-  width: calc(100% - 100px); /* 버튼 제외 공간에 딱 맞춤 */
-  overflow: hidden;
+  width: 100%;
+  overflow-x: auto;
   padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+
+.goods_card_link {
+  text-decoration: none;
+  color: inherit;
+  scroll-snap-align: start;
 }
 
 .goods_slider .goods_card {
-  min-width: calc((100% - 100px) / 8);
-  max-width: calc((100% - 100px) / 8);
+  min-width: 220px;
+  max-width: 240px;
 }
 .goods_card {
   width: 100%;
@@ -408,6 +415,21 @@
   background: #ffffff;
   padding: 12px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  white-space: normal;
+  transform: none;
+}
+
+.goods_card h3,
+.goods_price,
+.goods_meta,
+.goods_image {
+  white-space: normal;
+  transform: none;
+  writing-mode: horizontal-tb;
 }
 
 .goods_image {

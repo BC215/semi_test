@@ -1,3 +1,4 @@
+// 설명: src/components/board/StoreDetail.jsx 컴포넌트/모듈 파일입니다. 필요한 로직 주석을 추가하세요.
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { storeDummyData } from "../mock/dummyData";
@@ -82,7 +83,7 @@ const StoreDetail = () => {
             </div>
             <div className={styles.detail_actions}>
               
-              <button className={styles.buy_button}>구매하기</button> /*현재 미구현*/ 
+              <button className={styles.buy_button}>구매하기</button>
             </div>
           </div>
         </div>

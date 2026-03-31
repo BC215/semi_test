@@ -1,3 +1,4 @@
+// 설명: src/components/page/DetailPage.jsx 컴포넌트/모듈 파일입니다. 필요한 로직 주석을 추가하세요.
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MapView from "../components/map/MapView";

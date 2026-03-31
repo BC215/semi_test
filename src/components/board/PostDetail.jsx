@@ -1,3 +1,4 @@
+// 설명: src/components/board/PostDetail.jsx 컴포넌트/모듈 파일입니다. 필요한 로직 주석을 추가하세요.
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import styles from "./PostDetail.module.css";
