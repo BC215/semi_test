@@ -54,8 +54,29 @@ const Store = () => {
   };
 
   return (
-    <section className={styles.store_wrap}>
-      <div className={styles.header_box}>
+    <div className={styles.store_layout}>
+      {/* 좌측 메뉴 + 고객센터 (Main 페이지와 동일 위치) */}
+      <aside className={styles.menu_panel}>
+        <div className={styles.menu_title}>메뉴</div>
+        <ul className={styles.menu_list}>
+          <li><a href="#">맵 커뮤니티</a></li>
+          <li><a href="#">챌린지 캠페인</a></li>
+          <li><a href="/store">중고거래</a></li>
+          <li><a href="#">미션</a></li>
+          <li><a href="#">나무 키우기</a></li>
+          <li><a href="#">공지사항</a></li>
+        </ul>
+        <div className={styles.customer_box}>
+          <h3>고객센터</h3>
+          <p>고객센터 운영시간</p>
+          <p>10:00 ~ 18:00</p>
+          <a href="#" className={styles.customer_link}>문의하기 ▶</a>
+        </div>
+      </aside>
+
+      {/* 오른쪽 스토어 콘텐츠 기본 영역 */}
+      <section className={styles.store_wrap}>
+        <div className={styles.header_box}>
         <h1>중고장터</h1>
         <div className={styles.search_box}>
           <select
@@ -105,6 +126,7 @@ const Store = () => {
         </button>
       </div>
     </section>
+  </div>
   );
 };
 

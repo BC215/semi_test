@@ -4,6 +4,114 @@
   - 간단한 주석으로 각 블록 의미를 설명합니다.
 */
 
+.store_layout {
+  display: flex;
+  align-items: flex-start; /* 상단 맞춤: 메뉴와 스토어 헤더가 동일 높이에 시작 */
+  gap: 20px;
+  width: min(1580px, 100%);
+  margin: 28px auto 0;
+}
+
+.store_wrap {
+  margin-top: 0; /* 왼쪽 메뉴 상단과 맞추기 */
+}
+
+.menu_panel {
+  width: 220px;
+  height: 720px;
+  background: #ffffff;
+  border: 1px solid #dbe4ef;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.menu_title {
+  background: #2d4e34;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.menu_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.menu_list li {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1f2a17;
+  padding-left: 10px;
+  line-height: 1.4;
+}
+
+.menu_list a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  width: 100%;
+}
+
+.menu_list a:hover {
+  color: #2d4e34;
+  transform: translateX(2px);
+}
+
+.menu_list a:active,
+.menu_list a:focus {
+  color: #1f2a17;
+  outline: none;
+}
+
+.menu_list a:visited {
+  color: inherit;
+}
+
+.customer_box {
+  margin-top: auto;
+  padding: 12px;
+  border: 1px solid #c7d7ca;
+  border-radius: 12px;
+  background: #eef7ef;
+}
+
+.customer_box h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+.customer_box p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+}
+
+.customer_box a,
+.customer_box button {
+  display: inline-block;
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #2d4e34;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .store_wrap {
   width: min(1340px, 100%);
   margin: 28px auto 60px;
