@@ -9,12 +9,8 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 1440px;
-  height: 1024px;
-  min-width: 1440px;
-  min-height: 1024px;
-  max-width: 1440px;
-  max-height: 1024px;
+  width: min(1580px, 100%);
+  min-height: calc(100vh - var(--header-h) - var(--footer-h));
   overflow: hidden;
   margin: 0 auto;
   padding: 12px;

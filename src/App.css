@@ -16,14 +16,14 @@
 .wrap {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* ⭐ 화면 높이 100% 고정 */
+  min-height: 100vh; /* 콘텐츠 길이 따라 늘어나도록 수정 */
 }
 
 .main {
   flex: 1; /* 헤더/푸터 제외 남은 공간 다 차지 */
-  overflow: hidden; /* 전체 메인 페이지 스크롤 차단, 내부 섹션만 스크롤 허용 */
+  overflow: auto; /* 메인 내부 스크롤 가능 (필요 시) */
   padding-top: 0; /* 헤더 여백 제거 */
-  min-height: calc(100vh - var(--header-h) - var(--footer-h));
+  min-height: 0; /* 자식 컨텐츠 확장 시 푸터가 따라 내려가도록 */
   background-color: var(--bg-color);
 }
 

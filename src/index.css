@@ -24,5 +24,5 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* ⭐ 브라우저 전체 스크롤바를 아예 없앰 */
+  overflow: auto; /* 라우트 별로 스크롤 허용 (메인 페이지는 내부에서 제한) */
 }
